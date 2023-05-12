@@ -1,103 +1,208 @@
 <template>
     <div>
-        <el-container>
-            <el-header>
-                <nav>
-                    <a href="https://www.Booking.com">Booking.com</a>
-                </nav>
-            </el-header>
-            <el-main>Main</el-main>
-        </el-container>
-
-        <el-container>
-            <el-header>Header</el-header>
-            <el-main>Main</el-main>
-            <el-footer>Footer</el-footer>
-        </el-container>
-
-        <el-container>
-            <el-aside width="200px">Aside</el-aside>
-            <el-main>Main</el-main>
-        </el-container>
-
-        <el-container>
-            <el-header>Header</el-header>
-            <el-container>
-                <el-aside width="200px">Aside</el-aside>
-                <el-main>Main</el-main>
+        <div class="BlueBackground">
+            <el-container line-height:150px>
+                <el-header>
+                    <div class="HeadLine">
+                        <nav>
+                            <a class="LogoLinkToHome" href="https://www.Booking.com">Booking.com</a>
+                        </nav>
+                    </div>
+                </el-header>
+                <center>
+                    <div class="SearchInfos">
+                        <el-main>
+                            <div class="HouseSearch">
+                                <el-row>
+                                    <div class="Destination" style="height:80px;">
+                                        <el-col :span="6">
+                                            <div class="grid-content-bg-purple">
+                                                <span class="demonstration">目的地</span>
+                                            </div>
+                                        </el-col>
+                                        <el-col :span="16">
+                                            <div class="grid-content-bg-purple">
+                                                <el-cascader placeholder="试试搜索：南京" :options="options"
+                                                    filterable></el-cascader>
+                                            </div>
+                                        </el-col>
+                                    </div>
+                                </el-row>
+                                <el-row>
+                                    <div class="TimeIn" style="height:80px;">
+                                        <el-col :span="6">
+                                            <div class="grid-content-bg-purple">
+                                                <span class="demonstration">入住日期</span>
+                                            </div>
+                                        </el-col>
+                                        <el-col :span="6">
+                                            <div class="grid-content-bg-purple">
+                                                <el-date-picker v-model="timeValueIn" type="date" placeholder="选择日期">
+                                                </el-date-picker>
+                                            </div>
+                                        </el-col>
+                                    </div>
+                                </el-row>
+                                <el-row>
+                                    <div class="TimeOut" style="height:80px;">
+                                        <el-col :span="6">
+                                            <div class="grid-content-bg-purple">
+                                                <span class="demonstration">退房日期</span>
+                                            </div>
+                                        </el-col>
+                                        <el-col :span="6">
+                                            <div class="grid-content-bg-purple">
+                                                <el-date-picker v-model="timeValueOut" type="date" placeholder="选择日期">
+                                                </el-date-picker>
+                                            </div>
+                                        </el-col>
+                                    </div>
+                                </el-row>
+                                <el-row>
+                                    <div class="Visitors" style="height:80px">
+                                        <el-col :span="6">
+                                            <div class="grid-content-bg-purple">
+                                                <span class="demonstration">入住人员</span>
+                                            </div>
+                                        </el-col>
+                                        <el-dropdown>
+                                            <el-input v-model="Visitors" placeholder="入住情况"></el-input>
+                                            <el-dropdown-menu slot="dropdown">
+                                                <el-row>
+                                                    成人
+                                                    <el-input-number v-model="andultNum" @change="handleChange" :min="1"
+                                                        :max="10" label="描述文字"></el-input-number>
+                                                </el-row>
+                                                <el-row>
+                                                    儿童
+                                                    <el-input-number v-model="childNum" @change="handleChange" :min="0"
+                                                        :max="10" label="描述文字"></el-input-number>
+                                                </el-row>
+                                                <el-row>
+                                                    客房
+                                                    <el-input-number v-model="houseNum" @change="handleChange" :min="1"
+                                                        :max="10" label="描述文字"></el-input-number>
+                                                </el-row>
+                                            </el-dropdown-menu>
+                                        </el-dropdown>
+                                    </div>
+                                </el-row>
+                                <el-row>
+                                    <center>
+                                        <el-button type="primary">
+                                            查询
+                                        </el-button>
+                                    </center>
+                                </el-row>
+                            </div>
+                        </el-main>
+                    </div>
+                </center>
             </el-container>
-        </el-container>
-
-        <el-container>
-            <el-header>Header</el-header>
+        </div>
+        <div class="HomePageRecommendation">
             <el-container>
-                <el-aside width="200px">Aside</el-aside>
-                <el-container>
-                    <el-main>Main</el-main>
-                    <el-footer>Footer</el-footer>
-                </el-container>
+                <el-header style="margin-right: auto;">
+                    <div style="font-size: xx-large; font-weight: bold; text-align: left;">推荐目的地</div>
+                    <div style="text-align: left;">带您纵情山水，遨游四海。</div>
+                </el-header>
+                <el-main>
+                    <div class="block">
+                        <el-carousel trigger="click" height="400px" width="300px">
+                            <el-carousel-item v-for="item in 4" :key="item">
+                                <h3 class="small">{{ item }}</h3>
+                            </el-carousel-item>
+                        </el-carousel>
+                    </div>
+                </el-main>
             </el-container>
-        </el-container>
-
-        <el-container>
-            <el-aside width="200px">Aside</el-aside>
-            <el-container>
-                <el-header>Header</el-header>
-                <el-main>Main</el-main>
-            </el-container>
-        </el-container>
-
-        <el-container>
-            <el-aside width="200px">Aside</el-aside>
-            <el-container>
-                <el-header>Header</el-header>
-                <el-main>Main</el-main>
-                <el-footer>Footer</el-footer>
-            </el-container>
-        </el-container>
+        </div>
     </div>
 </template>
 
-<style>
-.el-header,
-.el-footer {
-    background-color: #B3C0D1;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
+<style scoped>
+.demonstration {
+    color: white;
 }
 
-.el-aside {
-    background-color: #D3DCE6;
-    color: #333;
-    text-align: center;
-    line-height: 200px;
+.el-carousel__item h3 {
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 150px;
+    margin: 0;
 }
 
-.el-main {
-    background-color: #E9EEF3;
-    color: #333;
-    text-align: center;
-    line-height: 160px;
+.el-carousel__item:nth-child(2n) {
+    background-color: #99a9bf;
 }
 
-body>.el-container {
-    margin-bottom: 40px;
+.el-carousel__item:nth-child(2n+1) {
+    background-color: #d3dce6;
 }
 
-.el-container:nth-child(5) .el-aside,
-.el-container:nth-child(6) .el-aside {
-    line-height: 260px;
+.grid-content-bg-purple {
+    width: 200px
 }
 
-.el-container:nth-child(7) .el-aside {
-    line-height: 320px;
+.BlueBackground {
+    background-color: rgb(22, 59, 150);
+    margin: -8px;
+}
+
+.LogoLinkToHome {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-weight: bold;
+    font-family: "Helvetica Rounded", sans-serif;
+    font-size: 25px;
+}
+
+.SearchInfos {
+    text-align: left;
+    width: fit-content;
+}
+
+.HomePageRecommendation {
+    margin: 20px;
+}
+
+.HomePageRecommendation>>>.el-header {
+    color: rgb(0, 0, 133);
 }
 </style>
 
 <script>
-export default
-    {
-        name: 'home'
+export default {
+    name: 'home',
+    data() {
+        return {
+            circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+            options: [{
+                value: 'JiangSu',
+                label: "江苏",
+                children: [{
+                    value: "NanJing",
+                    label: "南京",
+                    children: [{
+                        value: "JiangNing",
+                        label: "江宁"
+                    }, {
+                        value: "JianYe",
+                        label: "建邺"
+                    }]
+                }, {
+                    value: "XuZhou",
+                    label: "徐州"
+                }]
+            }],
+            timeValueIn: '',
+            timeValueOut: '',
+            Visitors: '',
+            andultNum: 2,
+            childNum: 0,
+            houseNum: 1
+        }
     }
+}
 </script>
