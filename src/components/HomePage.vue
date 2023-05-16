@@ -90,20 +90,45 @@
                 </div>
             </center>
         </div>
-        <div class="HomePageRecommendation">
+        <div class="DestinationRecommendation">
             <el-container>
                 <el-header style="margin-right: auto;">
                     <div style="font-size: xx-large; font-weight: bold; text-align: left;">推荐目的地</div>
                     <div style="text-align: left;">带您纵情山水，遨游四海。</div>
                 </el-header>
                 <el-main>
-                    <div class="block">
+                    <div class="block" style="border: 5px solid gray;">
                         <el-carousel trigger="click" height="400px" width="300px">
                             <el-carousel-item v-for="item in 4" :key="item">
                                 <h3 class="small">{{ item }}</h3>
                             </el-carousel-item>
                         </el-carousel>
                     </div>
+                </el-main>
+            </el-container>
+        </div>
+        <div class="HotelRecommendation">
+            <el-container>
+                <el-header style="margin-right: auto;">
+                    <div style="font-size: xx-large; font-weight: bold; text-align: left; color: rgb(0, 0, 133);">查看房型</div>
+                    <div style="text-align: left; color: rgb(0, 0, 133);">万般样式，总是合心合意。</div>
+                </el-header>
+                <el-main>
+                    <el-row>
+                        <el-col :span="4">&nbsp;</el-col>
+                        <el-col>
+                            <div class="ImageDemonstration">
+                                <el-col :span="3">&nbsp;</el-col>
+                                <el-col :span="3" v-for="(index) in 6" :key="index">
+                                    <el-image style="width: 150px; height: 150px; display: flex; align-items: left;" :src="hotelUrl" :fit="scale-down"></el-image>
+                                    <el-row style="text-align: left; font-size: large;">野兽先辈的小屋</el-row>
+                                    <el-row style="text-align: left; font-size: small;">114514家住宿</el-row>
+                                </el-col>
+                                <el-col :span="3">&nbsp;</el-col>
+                            </div>
+                        </el-col>
+                        <el-col :span="4">&nbsp;</el-col>
+                    </el-row>
                 </el-main>
             </el-container>
         </div>
@@ -137,8 +162,13 @@
     margin: 20px;
 }
 
-.HomePageRecommendation>>>.el-header {
+.DestinationRecommendation {
     color: rgb(0, 0, 133);
+    margin: 14px;
+}
+
+.HotelRecommendation {
+    margin: 14px;
 }
 </style>
 
@@ -168,18 +198,20 @@ export default {
             }],
             timeValueIn: "",
             timeValueOut: "",
-            Visitors: "",
+            Visitors: "成人：2/ 儿童：0/ 客房：1",
             andultNum: 2,
             childNum: 0,
-            houseNum: 1
+            houseNum: 1,
+            fits: ['contain', 'contain', 'contain', 'contain', 'contain'],
+            hotelUrl: 'http://114514.cn/yjsp.jpeg'
         };
-    }, 
+    },
     methods: {
         handleChange(value) {
             this.Visitors = "成人：" + this.andultNum.toString() + "/ 儿童：" + this.childNum.toString() + "/ 客房：" + this.houseNum.toString();
         },
         hotelInfoSearch() {
-            
+
         }
     }
 

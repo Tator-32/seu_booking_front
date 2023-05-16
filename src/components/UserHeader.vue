@@ -41,7 +41,7 @@
                             </div>
                             <el-dropdown-menu slot="dropdown">
                                 <center><el-row><UserRegister></UserRegister></el-row></center>
-                                <el-dropdown-item>用户注册</el-dropdown-item>
+                                <center><el-row><UserLogin></UserLogin></el-row></center>
                             </el-dropdown-menu>
                         </el-dropdown>
                     </el-col>
@@ -63,6 +63,7 @@
 </style>
 
 <script>
+import UserLogin from './UserLogin.vue';
 import UserRegister from './UserRegister.vue';
 export default {
     name: "UserHeader",
@@ -71,6 +72,6 @@ export default {
             avatarUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
         };
     },
-    components: { UserRegister }
+    components: { UserRegister, UserLogin }
 }
 </script>
