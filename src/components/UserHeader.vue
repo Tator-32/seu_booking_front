@@ -1,23 +1,46 @@
 <template>
     <div>
         <div class="HeadLine">
-            <div class="LinkLogo" style="width: 200px; height: 60px;">
-                <center>
-                    <a class="LogoLinkToHome" href="https://www.Booking.com" style="color: rgb(255, 255, 255);
-                                    text-decoration: none;
-                                    font-weight: bold;
-                                    font-family: 'Helvetica Rounded', sans-serif;
-                                    font-size: 25px;
-                                    text-align: left;">
-                        Booking.com
-                    </a>
-                </center>
-            </div>
-            <right style="width: fit-content;">
-                <div class="LoginAvatar" style="width: fit-content;">
-                    <el-avatar>Tator</el-avatar>
-                </div>
-            </right>
+            <el-row>
+                <el-col :span="12">
+                    <div class="LinkLogo" style="width: 200px; 
+                    height: 60px; 
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;">
+                        <a class="LogoLinkToHome" href="https://www.Booking.com" style="color: rgb(255, 255, 255);
+                                                            text-decoration: none;
+                                                            font-weight: bold;
+                                                            font-family: 'Helvetica Rounded', sans-serif;
+                                                            font-size: 25px;
+                                                            text-align: left;">
+                            Booking.com
+                        </a>
+                    </div>
+                </el-col>
+                <el-col :span="12">
+                    <el-col :span="4">
+                        <div>&nbsp;</div>
+                    </el-col>
+                    <el-col :span="4">
+                        <div>&nbsp;</div>
+                    </el-col>
+                    <el-col :span="4">
+                        <div>&nbsp;</div>
+                    </el-col>
+                    <el-col :span="4">
+                        <div>&nbsp;</div>
+                    </el-col>
+                    <el-col :span="4">
+                        <div>&nbsp;</div>
+                    </el-col>
+                    <el-col :span="4">
+                        <div class="LoginAvatar" style="width: 50px; height: 50px; margin: 10px; display: inline-block;">
+                            <el-avatar :size="60">Tator</el-avatar>
+                        </div>
+                    </el-col>
+                </el-col>
+            </el-row>
         </div>
     </div>
 </template>

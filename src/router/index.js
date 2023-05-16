@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/HomeView'
+import HomePage from '@/components/HomePage'
 
 Vue.use(VueRouter)
 
@@ -9,7 +10,13 @@ const routes =
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      children: [{
+        path: "/intro",
+        name: 'Intro',
+        component: HomePage
+      }
+      ]
     }
   ]
 
