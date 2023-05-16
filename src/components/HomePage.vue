@@ -57,22 +57,22 @@
                                         </div>
                                     </el-col>
                                     <el-dropdown>
-                                        <el-input v-model="Visitors" placeholder="入住情况"></el-input>
+                                        <el-input v-model="Visitors" placeholder="入住情况" readonly></el-input>
                                         <el-dropdown-menu slot="dropdown">
                                             <el-row>
                                                 成人
                                                 <el-input-number v-model="andultNum" @change="handleChange" :min="1"
-                                                    :max="10" label="描述文字"></el-input-number>
+                                                    :max="10"></el-input-number>
                                             </el-row>
                                             <el-row>
                                                 儿童
                                                 <el-input-number v-model="childNum" @change="handleChange" :min="0"
-                                                    :max="10" label="描述文字"></el-input-number>
+                                                    :max="10"></el-input-number>
                                             </el-row>
                                             <el-row>
                                                 客房
                                                 <el-input-number v-model="houseNum" @change="handleChange" :min="1"
-                                                    :max="10" label="描述文字"></el-input-number>
+                                                    :max="10"></el-input-number>
                                             </el-row>
                                         </el-dropdown-menu>
                                     </el-dropdown>
@@ -80,7 +80,7 @@
                             </el-row>
                             <el-row>
                                 <center>
-                                    <el-button type="primary">
+                                    <el-button type="primary" @click="hotelInfoSearch">
                                         查询
                                     </el-button>
                                 </center>
@@ -173,6 +173,15 @@ export default {
             childNum: 0,
             houseNum: 1
         };
+    }, 
+    methods: {
+        handleChange(value) {
+            this.Visitors = "成人：" + this.andultNum.toString() + "/ 儿童：" + this.childNum.toString() + "/ 客房：" + this.houseNum.toString();
+        },
+        hotelInfoSearch() {
+            
+        }
     }
+
 }
 </script>

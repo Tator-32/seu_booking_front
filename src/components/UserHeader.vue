@@ -4,16 +4,16 @@
             <el-row>
                 <el-col :span="12">
                     <div class="LinkLogo" style="width: 200px; 
-                    height: 60px; 
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;">
+                        height: 60px; 
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;">
                         <a class="LogoLinkToHome" href="https://www.Booking.com" style="color: rgb(255, 255, 255);
-                                                            text-decoration: none;
-                                                            font-weight: bold;
-                                                            font-family: 'Helvetica Rounded', sans-serif;
-                                                            font-size: 25px;
-                                                            text-align: left;">
+                                                                text-decoration: none;
+                                                                font-weight: bold;
+                                                                font-family: 'Helvetica Rounded', sans-serif;
+                                                                font-size: 25px;
+                                                                text-align: left;">
                             Booking.com
                         </a>
                     </div>
@@ -35,9 +35,15 @@
                         <div>&nbsp;</div>
                     </el-col>
                     <el-col :span="4">
-                        <div class="LoginAvatar" style="width: 50px; height: 50px; margin: 10px; display: inline-block;">
-                            <el-avatar :size="60">Tator</el-avatar>
-                        </div>
+                        <el-dropdown trigger="click" size="large">
+                            <div class="LoginAvatar" style="width: 50px; height: 50px; margin: 10px; display: inline-block;">
+                                <el-avatar :size="60" :src="avatarUrl"></el-avatar>
+                            </div>
+                            <el-dropdown-menu slot="dropdown">
+                                <center><el-row><UserRegister></UserRegister></el-row></center>
+                                <el-dropdown-item>用户注册</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </el-dropdown>
                     </el-col>
                 </el-col>
             </el-row>
@@ -57,7 +63,14 @@
 </style>
 
 <script>
+import UserRegister from './UserRegister.vue';
 export default {
-    name: 'UserHeader',
+    name: "UserHeader",
+    data() {
+        return {
+            avatarUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+        };
+    },
+    components: { UserRegister }
 }
 </script>
