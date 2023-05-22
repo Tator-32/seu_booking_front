@@ -4,16 +4,16 @@
             <el-row>
                 <el-col :span="12">
                     <div class="LinkLogo" style="width: 200px; 
-                                height: 60px; 
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;">
-                        <a class="LogoLinkToHome" href="https://www.Booking.com" style="color: rgb(255, 255, 255);
-                                                                        text-decoration: none;
-                                                                        font-weight: bold;
-                                                                        font-family: 'Helvetica Rounded', sans-serif;
-                                                                        font-size: 25px;
-                                                                        text-align: left;">
+                                        height: 60px; 
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;">
+                        <a class="LogoLinkToHome" @click="toHome" style="color: rgb(255, 255, 255);
+                                                                                text-decoration: none;
+                                                                                font-weight: bold;
+                                                                                font-family: 'Helvetica Rounded', sans-serif;
+                                                                                font-size: 25px;
+                                                                                text-align: left;">
                             Booking.com
                         </a>
                     </div>
@@ -56,6 +56,12 @@
 
 <script>
 export default {
-    name: "UserHeaderWithoutAva"
+    name: "UserHeaderWithoutAva",
+    methods: {
+        toHome()
+        {
+            this.$router.push('/');
+        }
+    }
 }
 </script>

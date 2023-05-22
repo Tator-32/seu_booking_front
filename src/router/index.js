@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/HomeView'
-import Login from '@/views/LoginView'
+import LoginMail from '@/views/LoginMailView'
+import LoginPhone from '@/views/LoginPhoneView'
 import HomePage from '@/components/HomePage'
+import VerifyCode from '@/views/VerifyCodeView'
+import ProfileView from '@/views/ProfileView'
 
 Vue.use(VueRouter)
 
@@ -18,9 +21,21 @@ const routes =
         component: HomePage
       }]
     }, {
-        path: "/Login",
-        name: 'Login',
-        component: Login
+      path: "/LoginMail",
+      name: 'LoginMail',
+      component: LoginMail
+    }, {
+      path: "/LoginPhone",
+      name: 'LoginPhone',
+      component: LoginPhone
+    }, {
+      path: "/VerifyCode",
+      name: "VerifyCode",
+      component: VerifyCode
+    }, {
+      path: "/Profile",
+      name: "Profile",
+      component: ProfileView
     }
   ]
 
