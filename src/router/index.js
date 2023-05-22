@@ -6,6 +6,7 @@ import LoginPhone from '@/views/LoginPhoneView'
 import HomePage from '@/components/HomePage'
 import VerifyCode from '@/views/VerifyCodeView'
 import ProfileView from '@/views/ProfileView'
+import SecondHomeView from '@/views/SecondHomeView'
 
 Vue.use(VueRouter)
 
@@ -36,6 +37,10 @@ const routes =
       path: "/Profile",
       name: "Profile",
       component: ProfileView
+    }, {
+      path:"/SecondHome",
+      name: "SecondHome",
+      component: SecondHomeView
     }
   ]
 
