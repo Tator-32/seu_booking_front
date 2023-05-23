@@ -4,7 +4,7 @@
             <center>
                 <div class="SearchInfos">
                     <el-main>
-                        <div class="HouseSearch">
+                        <div class="HouseSearch" style="width:80%;margin: auto;">
                             <el-row>
                                 <div class="Destination" style="height:80px;">
                                     <el-col :span="6">
@@ -147,7 +147,7 @@
 
 .BlueBackground {
     background-color: rgb(22, 59, 150);
-    margin: -8px;
+    margin: -16px;
     padding: 0px;
     border: 0px;
     text-align: center;

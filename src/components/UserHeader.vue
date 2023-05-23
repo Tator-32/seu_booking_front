@@ -1,19 +1,18 @@
 <template>
-    <div>
         <div class="HeadLine">
             <el-row>
                 <el-col :span="12">
                     <div class="LinkLogo" style="width: 200px; 
-                                            height: 60px; 
-                                            display: flex;
-                                            align-items: center;
-                                            justify-content: center;">
+                                                        height: 60px; 
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;">
                         <a class="LogoLinkToHome" @click="toHome" style="color: rgb(255, 255, 255);
-                                                                                    text-decoration: none;
-                                                                                    font-weight: bold;
-                                                                                    font-family: 'Helvetica Rounded', sans-serif;
-                                                                                    font-size: 25px;
-                                                                                    text-align: left;">
+                                                                                                text-decoration: none;
+                                                                                                font-weight: bold;
+                                                                                                font-family: 'Helvetica Rounded', sans-serif;
+                                                                                                font-size: 25px;
+                                                                                                text-align: left;">
                             Booking.com
                         </a>
                     </div>
@@ -40,7 +39,7 @@
                                 style="width: 50px; height: 50px; margin: 10px; display: inline-block;">
                                 <el-avatar :size="60" :src="avatarUrl"></el-avatar>
                             </div>
-                            <div v-if="username === null">
+                            <div v-if="phoneNumber === null && mailAddress === null">
                                 <el-dropdown-menu slot="dropdown">
                                     <div style="margin:5px">
                                         <el-row style="margin-bottom: 5px;"><el-button
@@ -63,7 +62,6 @@
                 </el-col>
             </el-row>
         </div>
-    </div>
 </template>
 
 <style scoped>
@@ -87,7 +85,7 @@ export default {
         };
     },
     computed: {
-        ...mapState(['username'])
+        ...mapState(['phoneNumber', 'mailAddress'])
     },
     methods: {
         ...mapMutations(['userlogout']),

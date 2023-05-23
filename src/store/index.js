@@ -5,21 +5,19 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-	  username:null,
-	  adminid:null,
+	  phoneNumber:null,
+	  mailAddress:null
   },
   mutations: {
-	  userlogin(state,username){
-		  state.username=username;
+	  userLoginPhone(state, phoneNumber){
+		  state.phoneNumber=phoneNumber;		  
+	  },
+	  userLoginMail(state, mailAddress) {
+		state.mailAddress=mailAddress;
 	  },
 	  userlogout(state){
-		  state.username=null;
-	  },
-	  adminlogin(state,adminid){
-		  state.adminid=adminid;
-	  },
-	  adminlogout(state){
-		  state.adminid=null;
+		  state.phoneNumber=null;
+		  state.mailAddress=null;
 	  }
   },
   actions: {

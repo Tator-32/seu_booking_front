@@ -74,6 +74,8 @@ export default {
                         this.$router.push({
                             name: 'VerifyCode',
                             params: {
+                                phonePar: this.loginform.loginVal,
+                                mailPar: null,
                                 code: res.data                                
                             }
                         });

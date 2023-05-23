@@ -6,7 +6,8 @@ import LoginPhone from '@/views/LoginPhoneView'
 import HomePage from '@/components/HomePage'
 import VerifyCode from '@/views/VerifyCodeView'
 import ProfileView from '@/views/ProfileView'
-import SecondHomeView from '@/views/SecondHomeView'
+import DetailView from '@/views/DetailView'
+import SearchListView from '@/views/SearchListView'
 
 Vue.use(VueRouter)
 
@@ -38,11 +39,14 @@ const routes =
       name: "Profile",
       component: ProfileView
     }, {
-      path:"/SecondHome",
-      name: "SecondHome",
-      component: SecondHomeView
-    }
-  ]
+      path: "/Detail",
+      name: "Detail",
+      component: DetailView
+    }, {
+      path: "/SearchList",
+      name: "SearchList",
+      component: SearchListView
+    }]
 
 const router = new VueRouter
   (

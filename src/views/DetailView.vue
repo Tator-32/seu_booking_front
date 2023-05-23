@@ -1,7 +1,6 @@
 <template>
     <div>
         <UserHeader></UserHeader>
-
         <div class="third_page">
             <div class="BlueBackground">
                 <center>
@@ -36,19 +35,17 @@
 
                     <el-main style="overflow: hidden">
                         <el-row class="hotel_row">
-                            <el-col class="hotel_title">
-                                <div>
-                                    酒店信息
-                                </div>
+                            <el-col class="hotel_title" style="float:left;">
+                                <div>{{ hotel_name }}</div>
                             </el-col>
                             <el-col class="hotel_botton">
-                                <div>
-                                    <el-button @click="scrollToTarget('room')" type="primary">
-                                        现在就预订
-                                    </el-button>
-                                </div>
+                                <el-button @click="scrollToTarget('room')" type="primary"> 现在就预订 </el-button>
                             </el-col>
                         </el-row>
+                        <div style="float:left;">
+                            {{ hotel_massage }}
+                        </div>
+                        <br>
                         <div>
                             <br>
                         </div>
@@ -64,14 +61,14 @@
                                 <el-container style="width:660px; height: 350px;">
                                     <el-aside width="200px" height="350px" style="overflow: hidden; padding-right: 10px;">
                                         <el-col>
-                                            <el-image style="width: 200px; height: 170px" :src="image_url_2"
+                                            <el-image style="width: 200px; height: 170px" :src="image_url_list[1]"
                                                 :fit="fill"></el-image>
-                                            <el-image style="width: 200px; height: 170px" :src="image_url_3"
+                                            <el-image style="width: 200px; height: 170px" :src="image_url_list[2]"
                                                 :fit="fill"></el-image>
                                         </el-col>
                                     </el-aside>
                                     <el-main style="padding: 0px;  overflow: hidden;">
-                                        <el-image style="width: 446px; height: 344px;" :src="image_url_1"
+                                        <el-image style="width: 446px; height: 344px;" :src="image_url_list[0]"
                                             :fit="fill"></el-image>
                                     </el-main>
                                 </el-container>
@@ -80,12 +77,12 @@
                                         <el-row
                                             style="display: flex; justify-content: center; width: 654px; height: 120px; padding-left: 0%;">
                                             <el-image style="width: 160px; height: 120px; margin-right: 8px"
-                                                :src="image_url_4" :fit="fill"></el-image>
+                                                :src="image_url_list[3]" :fit="fill"></el-image>
                                             <el-image style="width: 160px; height: 120px; margin-right: 8px"
-                                                :src="image_url_5" :fit="fill"></el-image>
+                                                :src="image_url_list[4]" :fit="fill"></el-image>
                                             <el-image style="width: 160px; height: 120px; margin-right: 8px"
-                                                :src="image_url_6" :fit="fill"></el-image>
-                                            <el-image style="width: 160px; height: 120px" :src="image_url_7"
+                                                :src="image_url_list[5]" :fit="fill"></el-image>
+                                            <el-image style="width: 160px; height: 120px" :src="image_url_list[6]"
                                                 :fit="fill"></el-image>
                                         </el-row>
                                     </el-header>
@@ -331,7 +328,7 @@
                     </div>
                     <div class="comment_cards" style="margin-top: 40px;">
                         <el-carousel :interval="4000" type="card" height="200px">
-                            <el-carousel-item v-for="(item, index) in heads" :key="index">
+                            <el-carousel-item v-for="(item, index) in comments" :key="index">
                                 <el-card class="box-card" height="100%">
                                     <div slot="header" class="clearfix"
                                         style="display:flex; align-items:center; justify-content:space-between;">
@@ -371,7 +368,7 @@
                                                     </div>
                                                 </el-row>
                                                 <div class="card-body">
-                                                    <div v-for="(item, index) in facility01" :key="index">
+                                                    <div v-for="(item, index) in facility[0]" :key="index">
                                                         <span><i class="el-icon-check"></i>{{ item }}</span>
                                                     </div>
                                                 </div>
@@ -383,7 +380,7 @@
                                                     </div>
                                                 </el-row>
                                                 <div class="card-body">
-                                                    <div v-for="(item, index) in facility02" :key="index">
+                                                    <div v-for="(item, index) in facility[1]" :key="index">
                                                         <span><i class="el-icon-check"></i>{{ item }}</span>
                                                     </div>
                                                 </div>
@@ -395,7 +392,7 @@
                                                     </div>
                                                 </el-row>
                                                 <div class="card-body">
-                                                    <div v-for="(item, index) in facility03" :key="index">
+                                                    <div v-for="(item, index) in facility[2]" :key="index">
                                                         <span><i class="el-icon-check"></i>{{ item }}</span>
                                                     </div>
                                                 </div>
@@ -407,7 +404,7 @@
                                                     </div>
                                                 </el-row>
                                                 <div class="card-body">
-                                                    <div v-for="(item, index) in facility04" :key="index">
+                                                    <div v-for="(item, index) in facility[3]" :key="index">
                                                         <span><i class="el-icon-check"></i>{{ item }}</span>
                                                     </div>
                                                 </div>
@@ -419,7 +416,7 @@
                                                     </div>
                                                 </el-row>
                                                 <div class="card-body">
-                                                    <div v-for="(item, index) in facility05" :key="index">
+                                                    <div v-for="(item, index) in facility[4]" :key="index">
                                                         <span><i class="el-icon-check"></i>{{ item }}</span>
                                                     </div>
                                                 </div>
@@ -431,7 +428,7 @@
                                                     </div>
                                                 </el-row>
                                                 <div class="card-body">
-                                                    <div v-for="(item, index) in facility06" :key="index">
+                                                    <div v-for="(item, index) in facility[5]" :key="index">
                                                         <span><i class="el-icon-check"></i>{{ item }}</span>
                                                     </div>
                                                 </div>
@@ -451,7 +448,7 @@
                                                     </div>
                                                 </el-row>
                                                 <div class="card-body">
-                                                    <div v-for="(item, index) in facility11" :key="index">
+                                                    <div v-for="(item, index) in facility[6]" :key="index">
                                                         <span><i class="el-icon-check"></i>{{ item }}</span>
                                                     </div>
                                                 </div>
@@ -463,7 +460,7 @@
                                                     </div>
                                                 </el-row>
                                                 <div class="card-body">
-                                                    <div v-for="(item, index) in facility12" :key="index">
+                                                    <div v-for="(item, index) in facility[7]" :key="index">
                                                         <span><i class="el-icon-check"></i>{{ item }}</span>
                                                     </div>
                                                 </div>
@@ -475,7 +472,7 @@
                                                     </div>
                                                 </el-row>
                                                 <div class="card-body">
-                                                    <div v-for="(item, index) in facility13" :key="index">
+                                                    <div v-for="(item, index) in facility[8]" :key="index">
                                                         <span><i class="el-icon-check"></i>{{ item }}</span>
                                                     </div>
                                                 </div>
@@ -487,7 +484,7 @@
                                                     </div>
                                                 </el-row>
                                                 <div class="card-body">
-                                                    <div v-for="(item, index) in facility14" :key="index">
+                                                    <div v-for="(item, index) in facility[9]" :key="index">
                                                         <span><i class="el-icon-check"></i>{{ item }}</span>
                                                     </div>
                                                 </div>
@@ -508,7 +505,7 @@
                                                     </div>
                                                 </el-row>
                                                 <div class="card-body">
-                                                    <div v-for="(item, index) in facility21" :key="index">
+                                                    <div v-for="(item, index) in facility[10]" :key="index">
                                                         <span><i class="el-icon-check"></i>{{ item }}</span>
                                                     </div>
                                                 </div>
@@ -520,7 +517,7 @@
                                                     </div>
                                                 </el-row>
                                                 <div class="card-body">
-                                                    <div v-for="(item, index) in facility22" :key="index">
+                                                    <div v-for="(item, index) in facility[11]" :key="index">
                                                         <span><i class="el-icon-check"></i>{{ item }}</span>
                                                     </div>
                                                 </div>
@@ -532,7 +529,7 @@
                                                     </div>
                                                 </el-row>
                                                 <div class="card-body">
-                                                    <div v-for="(item, index) in facility23" :key="index">
+                                                    <div v-for="(item, index) in facility[12]" :key="index">
                                                         <span><i class="el-icon-check"></i>{{ item }}</span>
                                                     </div>
                                                 </div>
@@ -758,111 +755,37 @@ import YellowSearch from '@/components/YellowSearch.vue'
 export default {
     name: "home",
     methods: {
-        // init() {
-        //     this.$http.post("/thirdPage", {
-        //         user_address: this.loginform.user_address,
-        //     }).then(res => {
-        //         if (res) {
-        //             this.$message({
-        //                 type: "success",
-        //                 message: "连接成功"
-        //             });
-        //             // 检查rules属性是否存在，并分配默认值
-        //             this.rules=[
-        //                 {
-        //                     head: "你不许参加apex竞赛",
-        //                     content: "你不许参加apex竞赛"
-        //                 }
-        //             ];
-        //         }
-        //     }).catch(function (error) {
-        //         alert("连接失败");
-        //     });
-
-        // }
+        mounted() {
+            this.init()
+        },
         init() {
-            //     this.$http.post("/thirdPage", {
-            //         user_address: this.loginform.user_address,
-            //     }).then(res => {
-            //         if (res) {
-            //             this.$message({
-            //                 type: "success",
-            //                 message: "连接成功"
-            //             });
-            //             // 检查rules属性是否存在，并分配默认值
-            //             this.rules=[
-            //                 {
-            //                     head: "你不许参加apex竞赛",
-            //                     content: "你不许参加apex竞赛"
-            //                 }
-            //             ];
-            //         }
-            //     }).catch(function (error) {
-            //         alert("连接失败");
-            //     });
-
-        },
-        created() {
-            //     this.$http.post("/thirdPage", {
-            //         user_address: this.loginform.user_address,
-            //     }).then(res => {
-            //         if (res) {
-            //             this.$message({
-            //                 type: "success",
-            //                 message: "连接成功"
-            //             });
-            //             // 检查rules属性是否存在，并分配默认值
-            //             this.rules=[
-            //                 {
-            //                     head: "你不许参加apex竞赛",
-            //                     content: "你不许参加apex竞赛"
-            //                 }
-            //             ];
-            //         }
-            //     }).catch(function (error) {
-            //         alert("连接失败");
-            //     });
-            // this.init();
-        },
-        open() {
             this.$http.post("/thirdPage",
                 {
-                    loginVal: "Hello World!",
-                    loginType: 'Phone'
+                    test: "test"
                 }
             ).then(res => {
                 if (res) {
-                    //this.$message({type: "succes", message: res.data.toString()})
-                    //console.log(typeof(res.data))
-                    console.log(res.data);
+                    this.rules = res.data.rules;
+                    this.hotel_name = res.data.hotel_name;
+                    this.hotel_massage = res.data.hotel_massage;
+                    this.image_url_list = res.data.image_url_list;
+                    this.character1 = res.data.character1;
+                    this.character2 = res.data.character2;
+                    this.percentage = res.data.percentage;
+                    this.tableData = res.data.tableData;
+                    this.facility = res.data.facility;
+                    this.comments = res.data.comment;
                 }
             }
-            ).catch(function (error) { alert("连接失败"); });
-            
-            // this.$http.post("/thirdPage", {
-            //     loginVal: '这是一个前端数据',
-            //     loginType: 'Phone'
+            ).catch(function (error) {
+                alert("连接失败");
+            });
 
-            // }).then(res => {
-            //     if (res) {
-            //         this.$message({
-            //             type: "success",
-            //             message: "连接成功"
-            //         });
-            //         // 检查rules属性是否存在，并分配默认值
-            //         this.rules = [
-            //             {
-            //                 head: "你不许参加apex竞赛",
-            //                 content: "你不许参加apex竞赛"
-            //             }
-            //         ];
-            //     }
-            // }).catch(function (error) {
-            //     alert("连接失败");
-            // });
-
-            //     this.$alert(
-            //         `
+        },
+        open() {
+            this.init()
+            // this.$alert(
+            //     `
             // <div class="modal">
             //     <div class="header">
             //         &nbsp&nbsp&nbsp如果您在其他网站发现能够以更低的价格预订相同的房型，您即可申请差价补偿。
@@ -872,9 +795,9 @@ export default {
             // <div class="body">
             // </div>
             // `,
-            //         '价格更放心',
-            //         { dangerouslyUseHTMLString: true }
-            //     );
+            //     '价格更放心',
+            //     { dangerouslyUseHTMLString: true }
+            // );
         },
         scrollToTarget(refName) {
             const targetEl = this.$refs[refName]
@@ -898,17 +821,11 @@ export default {
     },
     data() {
         return {
-            rules: [
-                {
-                    head: "你不许参加apex竞赛",
-                    content: "你不许参加apex竞赛"
-                },
-                {
-                    head: "你可以参加apex竞赛",
-                    content: "你可以参加apex竞赛"
-                }
-            ],
-            percentage: [100, 90, 80, 70, 60, 50, 40, 30, 10],
+            rules: [],
+            image_url_list: [],
+            hotel_name: "酒店名称",
+            hotel_massage: "酒店简介",
+            percentage: [100, 100, 100, 100, 100, 100, 100, 100, 100],
             tableData: [
                 {
                     type: {
@@ -950,99 +867,91 @@ export default {
                     isBookable: true // 默认可以预订
                 },
             ],
-            character1: [
-                "aaa",
-                "bbb",
-                "ccc",
-
+            character1: [],
+            character2: [],
+            facility: [
+                [
+                    "卫生纸",
+                    "毛巾",
+                    "卫生间",
+                    "淋浴"
+                ],
+                [
+                    "户外家具",
+                    "露台",
+                    "花园"
+                ],
+                [
+                    "客人可携带宠物入住。 住宿方可能会收取额外费用。"
+                ],
+                [
+                    "平板电视"
+                ],
+                [
+                    "住宿内咖啡店",
+                    "小吃吧",
+                    "酒吧"
+                ],
+                [
+                    "住宿方于各处提供WiFi（免费）。"
+                ],
+                [
+                    " 无需预订：住宿场所设有私人停车设施，收费标准：每日€ 20。",
+                    "停车库",
+                    "无障碍停车场"
+                ],
+                [
+                    "杂货递送",
+                    "每日客房打扫",
+                    "共用休息室/电视区",
+                    "办理私人登记入住/退房手续",
+                    "行李寄存",
+                    "额外收费",
+                    "传真/复印",
+                    "额外收费",
+                    "快速办理入住/退房手续",
+                    "24小时前台"
+                ],
+                [
+                    "提供发票"
+                ],
+                [
+                    "灭火器",
+                    "住宿外部闭路电视监控系统",
+                    "公共区域闭路电视监控系统",
+                    "烟雾报警器",
+                    "安全报警器",
+                    "刷卡进门",
+                    "钥匙进门",
+                    "24小时安保"
+                ],
+                [
+                    "吸烟区",
+                    "空调",
+                    "酒店各处禁烟",
+                    "暖气",
+                    "隔音",
+                    "隔音客房",
+                    "电梯",
+                    "家庭间",
+                    "无障碍设施",
+                    "禁烟客房"
+                ],
+                [
+                    " 盥洗盆较低",
+                    "坐便器较高",
+                    "坐便器 - 带扶手",
+                    "无障碍通道"
+                ],
+                [
+                    "  阿拉伯语",
+                    "英语",
+                    "西班牙语",
+                    "法语",
+                    "印地语"
+                ],
             ],
-            character2: [
-                "ddd",
-                "eee",
-                "fff",
-                "ggg"
-            ],
-            facility01: [
-                "卫生纸",
-                "毛巾",
-                "卫生间",
-                "淋浴"
-            ],
-            facility02: [
-                "户外家具",
-                "露台",
-                "花园"
-            ],
-            facility03: [
-                "客人可携带宠物入住。 住宿方可能会收取额外费用。"
-            ],
-            facility04: [
-                "平板电视"
-            ],
-            facility05: [
-                "住宿内咖啡店",
-                "小吃吧",
-                "酒吧"
-            ],
-            facility06: [
-                "住宿方于各处提供WiFi（免费）。"
-            ],
-            facility11: [
-                " 无需预订：住宿场所设有私人停车设施，收费标准：每日€ 20。",
-                "停车库",
-                "无障碍停车场"
-            ],
-            facility12: [
-                "杂货递送",
-                "每日客房打扫",
-                "共用休息室/电视区",
-                "办理私人登记入住/退房手续",
-                "行李寄存",
-                "额外收费",
-                "传真/复印",
-                "额外收费",
-                "快速办理入住/退房手续",
-                "24小时前台"
-            ],
-            facility13: [
-                "提供发票"
-            ],
-            facility14: [
-                "灭火器",
-                "住宿外部闭路电视监控系统",
-                "公共区域闭路电视监控系统",
-                "烟雾报警器",
-                "安全报警器",
-                "刷卡进门",
-                "钥匙进门",
-                "24小时安保"
-            ],
-            facility21: [
-                "吸烟区",
-                "空调",
-                "酒店各处禁烟",
-                "暖气",
-                "隔音",
-                "隔音客房",
-                "电梯",
-                "家庭间",
-                "无障碍设施",
-                "禁烟客房"
-            ],
-            facility22: [
-                " 盥洗盆较低",
-                "坐便器较高",
-                "坐便器 - 带扶手",
-                "无障碍通道"
-            ],
-            facility23: [
-                "  阿拉伯语",
-                "英语",
-                "西班牙语",
-                "法语",
-                "印地语"
-            ],
-            heads: [
+            comments: [
                 {
                     imgSrc: "https://tse3-mm.cn.bing.net/th/id/OIP-C.Fc_sZTmq-1Q8aKpCX7ewMgAAAA?w=210&h=210&c=7&r=0&o=5&dpr=1.3&pid=1.7",
                     text: "花开富贵  ",
@@ -1074,25 +983,6 @@ export default {
                     comment: "这家酒店的设施非常新，房间布置非常唯美，给人一种温馨舒适的感觉。酒店员工非常热情，酒店的位置也很便捷。"
                 },
             ],
-
-            imageList: [
-                'https://ac-a.static.booking.cn/xdata/images/hotel/max1024x768/448107908.jpg?k=f18ec7522a53c80372458b1942b44f0f7b8ce849dd3df7fcecaedf69efa2beb3&o=&hp=1',
-                'https://ac-a.static.booking.cn/xdata/images/hotel/max1024x768/448115447.jpg?k=197dbcb14c8fc9017711ff36d220a9a6c29a85a48b670924b6195d1c48dde56b&o=&hp=1',
-                'https://ac-a.static.booking.cn/xdata/images/hotel/max1024x768/456696501.jpg?k=2bb528de569186dcbd7ca8be4d51131e0e7f3193e60b6ce8ae1d30784090d309&o=&hp=1',
-                'https://ac-a.static.booking.cn/xdata/images/hotel/max1024x768/448108954.jpg?k=99d89aeb9560057df60cebb229e44499f571dc8b02674a16367b5ea364a69276&o=&hp=1',
-            ],
-            image_url_1: 'https://ac-a.static.booking.cn/xdata/images/hotel/max1024x768/170758821.jpg?k=9718ef0be2e07d96c6f510bc4d356aa5ee0b15a268e43d4b6427a454dcc86d52&o=&hp=1',
-            image_url_2: 'https://ac-a.static.booking.cn/xdata/images/hotel/max1024x768/170758784.jpg?k=aaa9e9ea92b9dfffdb4fa3bae3379908de5a19cf5ed6b444b0c3354c34215c19&o=&hp=1',
-            image_url_3: 'https://ac-a.static.booking.cn/xdata/images/hotel/max1024x768/214301339.jpg?k=e22b97d15e94a1520601a87e05db4a3a54cfb989afe986639d0758ba0c3b7325&o=&hp=1',
-            image_url_4: 'https://ac-a.static.booking.cn/xdata/images/hotel/max1024x768/214301416.jpg?k=49858b10803e9020f0a92971d3915878f4f8e6f4cef00af4088343455f2330fe&o=&hp=1',
-            image_url_5: 'https://ac-a.static.booking.cn/xdata/images/hotel/max1024x768/173422707.jpg?k=a2de862eb16c63bed2a855a7466675c6a5bc15102f177bdb0c4564678b254254&o=&hp=1',
-            image_url_6: 'https://ac-a.static.booking.cn/xdata/images/hotel/max1024x768/173330732.jpg?k=1c0fcae3d70f882c33928458189926fb76b639310383ad6c5ce9e5963aabe015&o=&hp=1',
-            image_url_7: 'https://ac-a.static.booking.cn/xdata/images/hotel/max1024x768/214301262.jpg?k=ae0c61321ac62be2a0fcffc49f711e17aea58dd5eb5765acdcd978c6ed1ccc0f&o=&hp=1',
-            image_url_8: 'https://gratisography.com/wp-content/uploads/2021/07/gratisography-green-bug-car-free-stock-photo-800x525.jpg',
-            image_url_9: 'https://gratisography.com/wp-content/uploads/2021/03/gratisography-circuit-board-detail-free-stock-photo-800x525.jpg',
-            image_url_10: 'https://gratisography.com/wp-content/uploads/2021/02/gratisography-anvil-kite-free-stock-vector-800x525.jpg',
-            value1: '',
-            value2: '',
             date_startOptions: {
                 disabledDate(time) {
                     return time.getTime() < Date.now() - 3600 * 1000 * 24;

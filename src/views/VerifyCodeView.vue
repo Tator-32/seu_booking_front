@@ -26,30 +26,35 @@
 
 <script>
 import UserHeaderWithoutAva from '@/components/UserHeaderWithoutAva.vue';
-import {mapState, mapMutations} from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
     data() {
         return {
+            phonePar: null,
+            mailPar: null,
             code: "No Data",
-            answer:""
+            answer: ""
         };
     },
     computed: {
-			...mapState(['username'])
-		},
+        ...mapState(['phoneNumber', 'mailAddress'])
+    },
     mounted() {
         this.code = this.$route.params.code;
+        this.phonePar = this.$route.params.phonePar;
+        this.mailPar = this.$route.params.mailPar
     },
     methods: {
-        ...mapMutations(['userlogin']),
+        ...mapMutations(['userLoginPhone', 'userLoginMail']),
         confirm() {
-            if(this.answer == this.code) {
+            if (this.answer == this.code) {
                 //this.$message({type: 'success', message: 'OK'});
-                this.userlogin("test");
+                this.userLoginPhone(this.phonePar);
+                this.userLoginMail(this.mailPar);
                 this.$router.push("/");
             } else {
-                this.$message({type: 'error', message: '验证码错误'});
+                this.$message({ type: 'error', message: '验证码错误' });
             }
         }
     },
