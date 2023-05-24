@@ -8,6 +8,8 @@ import VerifyCode from '@/views/VerifyCodeView'
 import ProfileView from '@/views/ProfileView'
 import DetailView from '@/views/DetailView'
 import SearchListView from '@/views/SearchListView'
+import UserOrderView from '@/views/UserOrderView'
+import HotelBookView from '@/views/HotelBookView'
 
 Vue.use(VueRouter)
 
@@ -46,6 +48,14 @@ const routes =
       path: "/SearchList",
       name: "SearchList",
       component: SearchListView
+    }, {
+      path: "/UserOrder",
+      name: "UserOrder",
+      component: UserOrderView
+    }, {
+      path: "/HotelBook",
+      name: "HotelBook",
+      component: HotelBookView
     }]
 
 const router = new VueRouter

@@ -37,7 +37,7 @@
                                 <div style="text-align: left; height: 40px; line-height: 40px; font-size: large;">邮箱地址</div>
                             </el-col>
                             <el-col :span="16">
-                                <el-input v-model="accountInfo.mailAddr" placeholder="请输入邮箱"></el-input>
+                                <el-input v-model="accountInfo.mailAddr" placeholder="请输入邮箱" :disabled="!mailEditable"></el-input>
                             </el-col>
                         </el-row>
                         <el-row :gutter="30">
@@ -45,7 +45,7 @@
                                 <div style="text-align: left; height: 40px; line-height: 40px; font-size: large;">电话号码</div>
                             </el-col>
                             <el-col :span="16">
-                                <el-input v-model="accountInfo.phoneNum" placeholder="手机号"></el-input>
+                                <el-input v-model="accountInfo.phoneNum" placeholder="手机号" :disabled="!phoneEditable"></el-input>                            
                             </el-col>
                         </el-row>
                         <el-row :gutter="30" style="margin-bottom: 50px;">
@@ -104,6 +104,8 @@ export default {
                 phoneNum: "",
                 birthDate: ""
             },
+            phoneEditable: true,
+            mailEditable: true,
             verified: true
         }
     },
@@ -112,38 +114,55 @@ export default {
     },
     created() {
         this.$http.post("/profile", {
-                phoneNo: this.phoneNumber,
-                mailAddr: this.mailAddress
-            }).then(res => {
-                if(res) {
-                    if(res.data.emailAddr != "No Email Address") {
-                        this.mailAddress = res.data.emailAddr;
-                    }
-                    if(res.data.emailAddr != "No Phone Number") {
-                        this.mailAddress = res.data.emailAddr;
-                    }
-                    this.accountInfo.realName = res.data.realName;
-                    this.accountInfo.userName = res.data.userName;
-                    this.accountInfo.mailAddr = res.data.emailAddr;
-                    this.accountInfo.phoneNum = res.data.phoneNum;
-                    this.accountInfo.birthDate = res.data.birthDate;
+            phoneNo: this.phoneNumber,
+            mailAddr: this.mailAddress
+        }).then(res => {
+            if (res) {
+                console.log(res.data);
+                if (res.data.emailAddr != "No Email Address") {
+                    this.mailAddress = res.data.emailAddr;
+                    this.mailEditable = false;
                 }
-            }).catch(function (error) { alert("连接失败"); });
+                if (res.data.phoneNum != "No Phone Number") {
+                    this.phoneNumber = res.data.phoneNum;
+                    this.phoneEditable = false;
+                }
+                this.accountInfo.realName = res.data.realName;
+                this.accountInfo.userName = res.data.userName;
+                this.accountInfo.mailAddr = res.data.emailAddr;
+                this.accountInfo.phoneNum = res.data.phoneNum;
+                this.accountInfo.birthDate = res.data.birthDate;
+            }
+        }).catch(function (error) { alert("连接失败"); });
     },
     methods: {
         profileChange() {
-            this.$http.post('/profileChange', {
-                realName: this.accountInfo.realName,
-                userName: this.accountInfo.userName,
-                mailAddr: this.accountInfo.mailAddr,
-                phoneNo: this.accountInfo.phoneNum,
-                birthDate: this.accountInfo.birthDate
-            }).then(res => {
-                if (res) {
-                    this.$message({ type: "success", message: res.data.toString() })
-                }
+            this.verified = true;
+            var reg = new RegExp(/^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/);
+            if (!reg.test(this.accountInfo.phoneNum)) {
+                this.$message({ type: "error", message: "手机号格式错误" });
+                this.verified = false;
             }
-            ).catch(function (error) { alert("连接失败"); });
+            reg = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+            if (!reg.test(this.accountInfo.mailAddr)) {
+                this.$message({ type: "error", message: "邮箱格式错误" });
+                this.verified = false;
+            }
+
+            if (this.verified) {
+                this.$http.post('/profileChange', {
+                    realName: this.accountInfo.realName,
+                    userName: this.accountInfo.userName,
+                    mailAddr: this.accountInfo.mailAddr,
+                    phoneNo: this.accountInfo.phoneNum,
+                    birthDate: this.accountInfo.birthDate
+                }).then(res => {
+                    if (res && res.data) {
+                        this.$message({ type: "success", message: "修改成功" })
+                    }
+                }
+                ).catch(function (error) { alert("连接失败"); });
+            }
         },
         backToHome() {
             this.$router.push("/")
